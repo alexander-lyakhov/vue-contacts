@@ -1,0 +1,22 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Exo+2');
+$font-primary: 'Exo 2';
+$page-width: 960px;
+
+$bg-body: #505050;
+$bg-main: #404040;
+$bg-header: #808080;
+$bg-nav: #606060;
+$bg-active: #303030;
+
+$color-primary: #ccc;
+$color-primary__active: #fff;
+$color-secondary: #9ce;
+$text-color: $color_primary;
+$color-route: #fc6;
+$color-route__disabled: #a0a0a0;
+
+$min-width: 400px;
+
+@mixin drop-shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}

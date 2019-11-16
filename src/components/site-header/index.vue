@@ -3,42 +3,34 @@
     <nav>
       <ul class="menu">
         <li class="menu-item">
-          <a class="menu-item__link menu-item__link-selected" href="#">Contacts</a>
+          <router-link to="#" class="menu-item__link menu-item__link-selected">Contacts</router-link>
         </li>
 
         <li class="menu-item">
-          <a class="menu-item__link" href="#">New</a>
+          <router-link to="#" class="menu-item__link">New</router-link>
         </li>
 
         <li class="menu-item">
-          <a class="menu-item__link" href="#">About</a>
+          <router-link to="#" class="menu-item__link">About</router-link>
         </li>
 
         <li class="menu-item">
-          <a class="menu-item__link" href="#">New</a>
+          <router-link to="#" class="menu-item__link">Contacts</router-link>
         </li>
 
         <li class="menu-item">
-          <a class="menu-item__link" href="#">About</a>
+          <router-link to="#" class="menu-item__link">New</router-link>
         </li>
 
         <li class="menu-item">
-          <a class="menu-item__link" href="#">New</a>
-        </li>
-
-        <li class="menu-item">
-          <a class="menu-item__link" href="#">About</a>
+          <router-link to="#" class="menu-item__link">About</router-link>
         </li>
       </ul>
     </nav>
   </header>
 </template>
 
-<script>
-</script>
-
 <style lang="scss" scoped>
-
 header {
   background: $bg-header;
   box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.25);
@@ -60,7 +52,6 @@ nav {
   align-items: center;
 
   .menu {
-    //background: #066;
     height: 100%;
     display: flex;
 
@@ -69,7 +60,7 @@ nav {
 
       &__link {
         font-size: 16px;
-        color: $color_route;
+        color: $color-route;
         text-decoration: none;
         display: flex;
         justify-content: center;
@@ -78,8 +69,8 @@ nav {
         padding: 0 16px;
 
         &-selected {
-          background: $bg-main;
-          border-bottom: 2px solid #c96;
+          background: $bg-nav-selected;
+          border-bottom: 2px solid $color-accent;
         }
 
         &:active, &:link {
@@ -87,17 +78,9 @@ nav {
         }
 
         &:hover {
-          background: $bg-main;
+          color: #000;
+          background: $bg-nav-active;
         }
-      }
-      &[disabled] {
-        .menu-item__link {
-            color: $color-route__disabled;
-            &:hover {
-              background: $bg-nav;
-              cursor: default;
-            }
-          }
       }
     }
   }

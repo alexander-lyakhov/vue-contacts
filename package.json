@@ -20,6 +20,7 @@
     "material-colors": "^1.2.6",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
+    "svg-to-vue-component": "^0.3.8",
     "vue-template-compiler": "^2.6.10"
   },
   "postcss": {

@@ -3,7 +3,7 @@
     <li class="user-list__item" v-for="user in users" :key="user.id">
       <div class="user-info">
         <div class="user-info__name">
-          {{user.lName}} {{user.fName}} {{user.sName}}
+          {{user.lastName}} {{user.firstName}} {{user.secondName}}
         </div>
         <div class="user-info__phone">
           699-95-39
@@ -19,9 +19,11 @@
 
 <script>
 
-import users from './users.json';
+//import api from '@/api';
 import iEdit from '@/assets/icons/edit.svg';
 import iRemove from '@/assets/icons/remove.svg';
+
+import {mapState} from 'vuex';
 
 export default {
   name: 'home',
@@ -33,12 +35,18 @@ export default {
 
   data() {
     return {
-      users: users
+      //users: []
     }
   },
 
-  mounted() {
-    console.log(users);
+  created() {
+    this.$store.dispatch('GET_CONTACT_LIST');
+  },
+
+  computed: {
+    ...mapState({
+      users: 'contacts'
+    })
   },
 
   methods: {

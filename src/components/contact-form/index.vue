@@ -1,5 +1,5 @@
 ﻿<template>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <label>First name</label>
     <div class="text-field">
       <input type="text" v-model="contact.firstName" />
@@ -18,6 +18,11 @@
     <label>Phone</label>
     <div class="text-field">
       <input type="text" v-model="contact.phone" />
+    </div>
+
+    <div class="buttons">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn outlined" @click.prevent="handleReset">Reset</button>
     </div>
   </form>
 </template>
@@ -38,13 +43,19 @@ export default {
 
   data() {
     return {
-      contact: {}
+      contact: {},
     }
   },
 
   watch: {
     params(val) {
-      const {id = '', firstName = '', secondName = '', lastName = '', phone = ''} = val;
+      this.setContact(val);
+    }
+  },
+
+  methods: {
+    setContact(data) {
+      const {id = '', firstName = '', secondName = '', lastName = '', phone = ''} = data;
 
       this.contact = {
         id,
@@ -53,6 +64,14 @@ export default {
         lastName,
         phone
       };
+    },
+
+    handleSubmit() {
+      this.$router.push({name: 'home'});
+    },
+
+    handleReset() {
+      this.setContact(this.params);
     }
   }
 }
@@ -85,6 +104,17 @@ form {
       border: none;
       outline: none;
       width: 100%;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+
+    .btn {
+      margin: 0 .5rem;
     }
   }
 }

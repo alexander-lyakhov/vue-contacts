@@ -12,14 +12,14 @@ body {
 }
 
 h2 {
-  font: 1.5rem $font-primary;
+  font: 1.5rem $font-primary, verdana;
   color: $color-secondary;
   letter-spacing: 1px;
   padding: 0 0 16px 0;
 }
 
 h3 {
-  font: 1.25rem $font-primary;
+  font: 1.25rem $font-primary, verdana;
   color: $color-primary__active;
   letter-spacing: 1px;
   padding: 0 0 8px 0;

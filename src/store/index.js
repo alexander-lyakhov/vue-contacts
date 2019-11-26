@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import api from '@/api';
+import contacts from '@/store/db.json';
 
 Vue.use(Vuex)
 
@@ -26,6 +27,10 @@ export default new Vuex.Store({
           console.log('-- ERROR --', err);
         }
       );
+      /*
+      console.log(contacts)
+      commit('POPULATE_CONTACTS', contacts.contacts);
+      */
     }
   },
 })

@@ -9,7 +9,7 @@
           699-95-39
         </div>
         <div class="user-info__actions" @click="doAction">
-          <router-link to="/about"><i-edit class="icon"></i-edit></router-link>
+          <router-link :to="getEditRoute(user.id)"><i-edit class="icon"></i-edit></router-link>
           <a href="#"><i-remove class="icon"></i-remove></a>
         </div>
       </div>
@@ -19,7 +19,6 @@
 
 <script>
 
-//import api from '@/api';
 import iEdit from '@/assets/icons/edit.svg';
 import iRemove from '@/assets/icons/remove.svg';
 
@@ -33,12 +32,6 @@ export default {
     iRemove,
   },
 
-  data() {
-    return {
-      //users: []
-    }
-  },
-
   created() {
     this.$store.dispatch('GET_CONTACT_LIST');
   },
@@ -46,12 +39,22 @@ export default {
   computed: {
     ...mapState({
       users: 'contacts'
-    })
+    }),
   },
+
 
   methods: {
     doAction(e) {
       console.log(e.target, e.currentTarget);
+    },
+
+    getEditRoute(userID) {
+      return {
+        name: 'edit',
+        params: {
+          id: userID
+        }
+      }
     }
   }
 }

@@ -10,29 +10,15 @@
         </li>
 
         <li class="menu-item">
-          <router-link to="#" class="menu-item__link">
+          <router-link to="/create" class="menu-item__link">
             <i-add class="icon"></i-add>
             <span>New</span>
           </router-link>
         </li>
 
         <li class="menu-item">
-          <router-link to="about" class="menu-item__link">
+          <router-link to="/about" class="menu-item__link">
             <i-about class="icon"></i-about>
-            <span>About</span>
-          </router-link>
-        </li>
-
-        <li class="menu-item">
-          <router-link to="#" class="menu-item__link">
-            <i-edit class="icon"></i-edit>
-            <span>New</span>
-          </router-link>
-        </li>
-
-        <li class="menu-item">
-          <router-link to="#" class="menu-item__link">
-            <i-remove class="icon"></i-remove>
             <span>About</span>
           </router-link>
         </li>

@@ -1,0 +1,42 @@
+<template>
+  <div class="edit-contact">
+    <h2>Edit contact</h2>
+    <section class="section">
+      <contact-form :params="contactInfo"></contact-form>
+    </section>
+  </div>
+</template>
+
+<script>
+
+import api from '@/api';
+import contactForm from '@/components/contact-form';
+import {mapState} from 'vuex';
+
+export default {
+  name: 'edit',
+
+  components: {
+    contactForm
+  },
+
+  data() {
+    return {
+      contactInfo: {}
+    }
+  },
+
+  created() {
+    api.getContactById(this.$route.params.id).then(res => {
+      this.contactInfo = res.data;
+    })
+  },
+
+  computed: {
+    ...mapState(['contacts'])
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+</style>

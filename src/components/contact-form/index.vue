@@ -1,5 +1,5 @@
 ﻿<template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent>
     <label>First name</label>
     <div class="text-field">
       <input type="text" placeholder="First name" v-model="contact.firstName" />
@@ -21,7 +21,7 @@
     </div>
 
     <div class="buttons">
-      <button class="btn btn-primary" type="submit" @click.prevent>Save</button>
+      <button class="btn btn-primary" type="submit" @click.prevent="handleSubmit">Save</button>
       <button class="btn outlined" @click.prevent="handleReset">Reset</button>
     </div>
   </form>
@@ -72,10 +72,12 @@ export default {
     },
 
     handleSubmit() {
+      this.$emit('submit', this.contact);
       //this.$router.push({name: 'home'});
     },
 
     handleReset() {
+      console.log(this.contact)
       this.setContact(this.params);
     }
   }

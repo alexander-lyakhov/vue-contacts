@@ -8,7 +8,7 @@ $btn-secondary-color: #a0c0e0;
   font-weight: 500;
   color: darken($btn-default-color, 50%);
   background: $btn-default-color;
-  border: none;
+  border: 2px solid $btn-default-color;
   border-radius: 3px;
   box-sizing: border-box;
   outline: none;
@@ -17,9 +17,9 @@ $btn-secondary-color: #a0c0e0;
   display: inline-block;
   min-width: 80px;
   user-select: none;
-  margin: 4px 2px;
   padding: .5rem 2rem;
   cursor: pointer;
+  position: relative;
 
   &.small {
     font-size: .75rem;
@@ -39,34 +39,54 @@ $btn-secondary-color: #a0c0e0;
     border-color: $btn-default-color;
   }
 
+  &.text {
+    color: $btn-default-color;
+    background: transparent;
+    border: none;
+  }
+
+  &:active {
+    top: 1px;
+  }
+
+  &:active:not(.outlined):not(.text) {
+    background: lighten($btn-default-color, 5);
+  }
+
   &-primary {
     color: darken($btn-primary-color, 50%);
     background-color: $btn-primary-color;
+    border-color: $btn-primary-color;
 
     &.outlined {
       color: $btn-primary-color;
-      background: transparent;
       border-color: $btn-primary-color;
     }
 
     &.text {
       color: $btn-primary-color;
-      background: transparent;
+    }
+
+    &:active:not(.outlined):not(.text) {
+      background: lighten($btn-primary-color, 5);
     }
   }
 
   &-secondary {
     color: darken($btn-secondary-color, 50%);
     background: $btn-secondary-color;
+    border-color: $btn-secondary-color;
 
     &.outlined {
       color: $btn-secondary-color;
-      background: transparent;
       border-color: $btn-secondary-color;
     }
     &.text {
       color: $btn-secondary-color;
-      background: transparent;
+    }
+
+    &:active:not(.outlined):not(.text) {
+      background: lighten($btn-secondary-color, 5);
     }
   }
 }

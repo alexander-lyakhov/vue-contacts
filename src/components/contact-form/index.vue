@@ -2,26 +2,26 @@
   <form @submit.prevent="handleSubmit">
     <label>First name</label>
     <div class="text-field">
-      <input type="text" v-model="contact.firstName" />
+      <input type="text" placeholder="First name" v-model="contact.firstName" />
     </div>
 
     <label>Second name</label>
     <div class="text-field">
-      <input type="text" v-model="contact.secondName" />
+      <input type="text" placeholder="Second name" v-model="contact.secondName" />
     </div>
 
     <label>Last name</label>
     <div class="text-field">
-      <input type="text" v-model="contact.lastName" />
+      <input type="text" placeholder="Last name" v-model="contact.lastName" />
     </div>
 
     <label>Phone</label>
     <div class="text-field">
-      <input type="text" v-model="contact.phone" />
+      <masked-input type="text" mask="111-11-11" placeholder="Phone" v-model="contact.phone" />
     </div>
 
     <div class="buttons">
-      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn btn-primary" type="submit" @click.prevent>Save</button>
       <button class="btn outlined" @click.prevent="handleReset">Reset</button>
     </div>
   </form>
@@ -30,9 +30,14 @@
 <script>
 
 import api from '@/api';
+import maskedInput from 'vue-masked-input'
 
 export default {
   name: 'contact-form',
+
+  components: {
+    maskedInput
+  },
 
   props: {
     params: {
@@ -67,7 +72,7 @@ export default {
     },
 
     handleSubmit() {
-      this.$router.push({name: 'home'});
+      //this.$router.push({name: 'home'});
     },
 
     handleReset() {
@@ -108,9 +113,7 @@ form {
   }
 
   .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include center-center;
     padding: 1rem 0;
 
     .btn {

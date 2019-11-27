@@ -25,3 +25,19 @@ $min-width: 400px;
 @mixin drop-shadow {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
+
+@mixin x-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin y-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

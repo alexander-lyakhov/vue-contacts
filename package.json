@@ -22,6 +22,7 @@
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "svg-to-vue-component": "^0.3.8",
+    "vue-masked-input": "^0.5.2",
     "vue-template-compiler": "^2.6.10"
   },
   "postcss": {

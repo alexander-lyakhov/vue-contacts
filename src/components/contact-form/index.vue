@@ -73,7 +73,6 @@ export default {
 
     handleSubmit() {
       this.$emit('submit', this.contact);
-      //this.$router.push({name: 'home'});
     },
 
     handleReset() {

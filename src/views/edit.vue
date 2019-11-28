@@ -43,7 +43,9 @@ export default {
 
   methods: {
     updateContact(data) {
-      this.$store.dispatch('UPDATE_CONTACT', data)
+      this.$store.dispatch('UPDATE_CONTACT', data).then(
+        res => this.$router.push({name: 'home'})
+      )
     }
   }
 }

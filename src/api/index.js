@@ -10,7 +10,7 @@ function getContactById(id) {
 
 function updateContact(data) {
   console.log('updateContact', data)
-  return axios.patch(`/contacts/${data.id}`, {params: {...data}})
+  return axios.patch(`/contacts/${data.id}`, data)
 }
 
 export default {

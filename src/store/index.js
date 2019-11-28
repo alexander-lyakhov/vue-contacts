@@ -31,6 +31,20 @@ export default new Vuex.Store({
       console.log(contacts)
       commit('POPULATE_CONTACTS', contacts.contacts);
       */
+    },
+
+    UPDATE_CONTACT({commit}, data) {
+      console.log('UPDATE_CONTACT', data)
+
+      api.updateContact().then(
+        res => {
+          console.log(res);
+          //commit('POPULATE_CONTACTS', res.data);
+        },
+        err => {
+          console.log('-- ERROR --', err);
+        }
+      )
     }
   },
 })

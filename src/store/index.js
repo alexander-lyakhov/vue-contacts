@@ -13,17 +13,14 @@ export default new Vuex.Store({
 
   mutations: {
     POPULATE_CONTACTS(state, data) {
-      /*
       if (!state.contacts.length) {
         state.contacts = data;
       }
-      */
-      //console.log('POPULATE_CONTACTS', data)
-      state.contacts = data;
     },
 
     CREATE_CONTACT(state, data) {
       console.log('CREATE_CONTACT', data);
+      state.contacts.unshift(data);
     },
 
     UPDATE_CONTACT(state, data) {

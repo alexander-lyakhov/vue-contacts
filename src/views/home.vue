@@ -6,7 +6,7 @@
           {{user.lastName}} {{user.firstName}} {{user.secondName}}
         </div>
         <div class="user-info__phone">
-          699-95-39
+          {{user.phone}}
         </div>
         <div class="user-info__actions" @click="doAction">
           <router-link :to="getEditRoute(user.id)"><i-edit class="icon"></i-edit></router-link>

@@ -20,8 +20,10 @@ export default {
 
   methods: {
     createContact(data) {
-      console.log('createContact');
-      this.$store.dispatch('CREATE_CONTACT', data);
+      //console.log('createContact');
+      this.$store.dispatch('CREATE_CONTACT', data).then(
+        res => this.$router.push({name: 'home'})
+      )
     }
   }
 }

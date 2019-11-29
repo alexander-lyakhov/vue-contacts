@@ -2,7 +2,7 @@
   <div class="create-contact">
     <h2>Create new contact</h2>
     <section class="section">
-      <contact-form></contact-form>
+      <contact-form @submit="createContact"></contact-form>
     </section>
   </div>
 </template>
@@ -16,6 +16,13 @@ export default {
 
   components: {
     contactForm
+  },
+
+  methods: {
+    createContact(data) {
+      console.log('createContact');
+      this.$store.dispatch('CREATE_CONTACT', data);
+    }
   }
 }
 </script>

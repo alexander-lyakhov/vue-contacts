@@ -13,9 +13,17 @@ export default new Vuex.Store({
 
   mutations: {
     POPULATE_CONTACTS(state, data) {
+      /*
       if (!state.contacts.length) {
         state.contacts = data;
       }
+      */
+      //console.log('POPULATE_CONTACTS', data)
+      state.contacts = data;
+    },
+
+    CREATE_CONTACT(state, data) {
+      console.log('CREATE_CONTACT', data);
     },
 
     UPDATE_CONTACT(state, data) {
@@ -35,6 +43,18 @@ export default new Vuex.Store({
           console.log('-- ERROR --', err);
         }
       );
+    },
+
+    CREATE_CONTACT({commit}, data) {
+      data.history = [];
+      return api.createContact(data).then(
+        res => {
+          commit('CREATE_CONTACT', res.data);
+        },
+        err => {
+          console.log('-- ERROR --', err);
+        }
+      )
     },
 
     UPDATE_CONTACT({commit}, data) {

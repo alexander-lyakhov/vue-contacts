@@ -52,10 +52,8 @@ export default {
     }
   },
 
-  watch: {
-    params(val) {
-      this.setContact(val);
-    }
+  created() {
+    this.$watch('params', val => this.setContact(val), {immediate: true});
   },
 
   methods: {

@@ -14,7 +14,7 @@
 
 import api from '@/api';
 import contactForm from '@/components/contact-form';
-import {mapState} from 'vuex';
+import {mapState, mapGetters} from 'vuex';
 
 export default {
   name: 'edit',
@@ -25,20 +25,27 @@ export default {
 
   data() {
     return {
-      contactInfo: {}
+      contactInfo: null
     }
   },
 
   created() {
-    api.getContactById(this.$route.params.id).then(res => {
-      this.contactInfo = res.data;
-    }).catch(err => {
-      console.log('-- ERROR --');
-    })
+    this.contactInfo = this.$store.getters.getContactById(this.$route.params.id);
+
+    !this.contactInfo &&
+      api.getContactById(this.$route.params.id).then(
+        res => {
+          this.contactInfo = res.data;
+        },
+        err => {
+          console.log('-- ERROR --');
+        }
+      )
   },
 
   computed: {
-    ...mapState(['contacts'])
+    ...mapState(['contacts']),
+    ...mapGetters(['getContactById'])
   },
 
   methods: {

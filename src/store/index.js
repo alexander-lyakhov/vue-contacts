@@ -11,6 +11,14 @@ export default new Vuex.Store({
     contacts: []
   },
 
+  getters: {
+    getContactById(state) {
+      return function(id) {
+        return state.contacts.find(item => item.id === id)
+      }
+    }
+  },
+
   mutations: {
     POPULATE_CONTACTS(state, data) {
       if (!state.contacts.length) {

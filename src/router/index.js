@@ -27,6 +27,11 @@ export default new VueRouter({
       component: edit
     },
     {
+      path: '/history',
+      name: 'history',
+      component: () => import(/* webpackChunkName: "about" */ '@/views/history.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

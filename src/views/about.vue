@@ -35,7 +35,8 @@
     height: 8px;
     position: relative;
     left: -8px;
-    top: 13px;
+    top: 12px;
+    transform: rotate(45deg);
     float: left;
 
   }

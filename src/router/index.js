@@ -27,7 +27,7 @@ export default new VueRouter({
       component: edit
     },
     {
-      path: '/history',
+      path: '/history/:id',
       name: 'history',
       component: () => import(/* webpackChunkName: "about" */ '@/views/history.vue')
     },

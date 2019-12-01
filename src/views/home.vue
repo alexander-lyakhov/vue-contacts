@@ -1,6 +1,6 @@
 <template>
   <ul class="user-list">
-    <li class="user-list__item" v-for="user in users" :key="user.id">
+    <li class="user-list__item" v-for="user in users" :key="user.id" @click="openHistory(user.id)">
       <div class="user-info">
         <div class="user-info__name">
           {{user.lastName}} {{user.firstName}} {{user.secondName}}
@@ -55,6 +55,13 @@ export default {
           id: userID
         }
       }
+    },
+
+    openHistory(id) {
+      this.$router.push({
+        name: 'history',
+        params: {id}
+      })
     }
   }
 }

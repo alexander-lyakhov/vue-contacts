@@ -44,6 +44,12 @@ export default {
       )
   },
 
+  mounted() {
+    document.documentElement.scrollTop ?
+      document.documentElement.scrollTop = 0: // Chrome
+      document.body.scrollTop = 0; // Edge
+  },
+
   computed: {
     contactFullName() {
       const {firstName, secondName, lastName} = this.contactInfo || {};

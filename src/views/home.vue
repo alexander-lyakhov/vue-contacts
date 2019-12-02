@@ -9,7 +9,7 @@
           {{user.phone}}
         </div>
         <div class="user-info__actions" @click="doAction">
-          <router-link :to="getEditRoute(user.id)"><i-edit class="icon"></i-edit></router-link>
+          <a href="#" @click.stop="getEditRoute(user.id)"><i-edit class="icon"></i-edit></a>
           <a href="#"><i-remove class="icon"></i-remove></a>
         </div>
       </div>
@@ -49,12 +49,12 @@ export default {
     },
 
     getEditRoute(userID) {
-      return {
+      this.$router.push({
         name: 'edit',
         params: {
           id: userID
         }
-      }
+      })
     },
 
     openHistory(id) {
@@ -131,7 +131,6 @@ $list-item-hover: $md-blue-grey-700;
       position: absolute;
       right: 0;
       top: -2rem;
-      //top: 0;
       opacity: 0;
       transition: top .2s, opacity .2s;
 

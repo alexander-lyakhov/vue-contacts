@@ -32,7 +32,9 @@ p {
 }
 
 .section {
+  @include drop-shadow;
   background: $bg-body;
+  border: 2px solid $md-blue-grey-600;
   border-radius: .5rem;
   margin: 0 0 .5rem 0;
   padding: 1rem 1rem;

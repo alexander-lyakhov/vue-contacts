@@ -9,8 +9,8 @@
           {{user.phone}}
         </div>
         <div class="user-info__actions" @click="doAction">
-          <a href="#" @click.stop="getEditRoute(user.id)"><i-edit class="icon"></i-edit></a>
-          <a href="#"><i-remove class="icon"></i-remove></a>
+          <a href="#" @click.stop="editContact(user.id)"><i-edit class="icon"></i-edit></a>
+          <a href="#" @click.stop="removeContact(user.id)"><i-remove class="icon"></i-remove></a>
         </div>
       </div>
     </li>
@@ -21,8 +21,9 @@
 
 import iEdit from '@/assets/icons/edit.svg';
 import iRemove from '@/assets/icons/remove.svg';
+import swal from 'sweetalert2';
 
-import {mapState} from 'vuex';
+import {mapState, mapGetters} from 'vuex';
 
 export default {
   name: 'home',
@@ -40,6 +41,7 @@ export default {
     ...mapState({
       users: 'contacts'
     }),
+    ...mapGetters(['getContactFullName']),
   },
 
 
@@ -48,11 +50,42 @@ export default {
       console.log(e.target, e.currentTarget);
     },
 
-    getEditRoute(userID) {
+    editContact(userID) {
       this.$router.push({
         name: 'edit',
         params: {
           id: userID
+        }
+      })
+    },
+
+    removeContact(userID) {
+      const fullName = this.getContactFullName(userID);
+
+      swal.fire({
+        title: 'Delete this contact?',
+        text: fullName,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Delete'
+      }).then(result => {
+        if (result.value) {
+          this.$store.dispatch('REMOVE_CONTACT', userID).then(
+            res => {
+              swal.fire({
+                title: 'Deleted!',
+                html: `The contact <br/><b>${fullName}</b></br> has been deleted`,
+              })
+            },
+            err => {
+              swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: err,
+              })
+            }
+          )
         }
       })
     },

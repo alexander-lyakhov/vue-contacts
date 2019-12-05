@@ -16,9 +16,14 @@ function updateContact(data) {
   return axios.patch(`/contacts/${data.id}`, data)
 }
 
+function removeContact(id) {
+  return axios.delete(`/contacts/${id}`);
+}
+
 export default {
   getContactList,
   getContactById,
   createContact,
-  updateContact
+  updateContact,
+  removeContact
 };

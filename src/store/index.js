@@ -16,7 +16,14 @@ export default new Vuex.Store({
       return function(id) {
         return state.contacts.find(item => item.id === id)
       }
-    }
+    },
+
+    getContactFullName(state, getters) {
+      return function(id) {
+        const {firstName, secondName, lastName} = getters.getContactById(id);
+        return [lastName, firstName, secondName].join(' ');
+      }
+    },
   },
 
   mutations: {
@@ -36,6 +43,10 @@ export default new Vuex.Store({
         item.id === data.id ? data : item
       );
     },
+
+    REMOVE_CONTACT(state, id) {
+      state.contacts = state.contacts.filter(item => item.id !== id);
+    }
   },
 
   actions: {
@@ -70,6 +81,12 @@ export default new Vuex.Store({
         err => {
           console.log('-- ERROR --', err);
         }
+      )
+    },
+
+    REMOVE_CONTACT({commit}, id) {
+      return api.removeContact(id).then(res =>
+        commit('REMOVE_CONTACT', id)
       )
     }
   },

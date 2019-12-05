@@ -21,7 +21,7 @@
 
 import iEdit from '@/assets/icons/edit.svg';
 import iRemove from '@/assets/icons/remove.svg';
-import swal from 'sweetalert2';
+import {sweetAlert, DELETING_REQUEST, DELETING_COMPLETE, ERROR_MESSAGE} from '@/defs/swal';
 
 import {mapState, mapGetters} from 'vuex';
 
@@ -62,31 +62,16 @@ export default {
     removeContact(userID) {
       const fullName = this.getContactFullName(userID);
 
-      swal.fire({
-        title: 'Delete this contact?',
-        text: fullName,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        confirmButtonText: 'Delete'
-      }).then(result => {
-        if (result.value) {
+      sweetAlert(DELETING_REQUEST, fullName).then(res => {
+        res.value &&
           this.$store.dispatch('REMOVE_CONTACT', userID).then(
             res => {
-              swal.fire({
-                title: 'Deleted!',
-                html: `The contact <br/><b>${fullName}</b></br> has been deleted`,
-              })
+              sweetAlert(DELETING_COMPLETE, fullName)
             },
             err => {
-              swal.fire({
-                icon: 'error',
-                title: 'Error!',
-                text: err,
-              })
+              sweetAlert(ERROR_MESSAGE, err)
             }
           )
-        }
       })
     },
 

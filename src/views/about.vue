@@ -17,6 +17,9 @@
     <div class="section">
       Front-end part should be developed as SPA with ES6,
     </div>
+    <div class="buttons">
+      <router-link to="/" class="back-to-home">Back to Home</router-link>
+    </div>
   </div>
 </template>
 

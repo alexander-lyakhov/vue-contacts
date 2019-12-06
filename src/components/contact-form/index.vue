@@ -24,6 +24,12 @@
       <button class="btn btn-primary" type="submit" @click.prevent="handleSubmit">Save</button>
       <button class="btn outlined" @click.prevent="handleReset">Reset</button>
     </div>
+
+    <hr />
+
+    <div class="buttons">
+      <router-link to="/" class="back-to-home">Back to Home</router-link>
+    </div>
   </form>
 </template>
 
@@ -74,7 +80,6 @@ export default {
     },
 
     handleReset() {
-      console.log(this.contact)
       this.setContact(this.params);
     }
   }
@@ -108,15 +113,6 @@ form {
       border: none;
       outline: none;
       width: 100%;
-    }
-  }
-
-  .buttons {
-    @include center-center;
-    padding: 1rem 0;
-
-    .btn {
-      margin: 0 .5rem;
     }
   }
 }

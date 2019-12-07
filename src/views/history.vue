@@ -23,6 +23,7 @@
 
 import api from '@/api';
 import {mapState, mapGetters} from 'vuex';
+import {sweetAlert, ERROR_MESSAGE} from '@/defs/swal';
 
 export default {
   name: 'history',
@@ -42,7 +43,7 @@ export default {
           this.contactInfo = res.data;
         },
         err => {
-          console.log('-- ERROR --');
+          sweetAlert(ERROR_MESSAGE, err)
         }
       )
   },

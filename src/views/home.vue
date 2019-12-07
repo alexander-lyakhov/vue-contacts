@@ -34,7 +34,9 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('GET_CONTACT_LIST');
+    this.$store.dispatch('GET_CONTACT_LIST').catch(err =>
+      sweetAlert(ERROR_MESSAGE, err)
+    )
   },
 
   computed: {

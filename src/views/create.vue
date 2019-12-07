@@ -10,6 +10,7 @@
 <script>
 
 import contactForm from '@/components/contact-form';
+import {sweetAlert, ERROR_MESSAGE} from '@/defs/swal';
 
 export default {
   name: 'create',
@@ -21,7 +22,12 @@ export default {
   methods: {
     createContact(data) {
       this.$store.dispatch('CREATE_CONTACT', data).then(
-        res => this.$router.push({name: 'home'})
+        res => {
+          this.$router.push({name: 'home'})
+        },
+        err => {
+          sweetAlert(ERROR_MESSAGE, err)
+        }
       )
     }
   }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import api from '@/api';
-import contacts from '@/store/db.json';
+//import contacts from '@/store/db.json';
 
 Vue.use(Vuex)
 
@@ -51,36 +51,22 @@ export default new Vuex.Store({
 
   actions: {
     GET_CONTACT_LIST({commit}) {
-      api.getContactList().then(
-        res => {
-          commit('POPULATE_CONTACTS', res.data);
-        },
-        err => {
-          console.log('-- ERROR --', err);
-        }
+      return api.getContactList().then(res =>
+        commit('POPULATE_CONTACTS', res.data)
       );
     },
 
     CREATE_CONTACT({commit}, data) {
       data.history = [];
-      return api.createContact(data).then(
-        res => {
-          commit('CREATE_CONTACT', res.data);
-        },
-        err => {
-          console.log('-- ERROR --', err);
-        }
+
+      return api.createContact(data).then(res =>
+        commit('CREATE_CONTACT', res.data)
       )
     },
 
     UPDATE_CONTACT({commit}, data) {
-      return api.updateContact(data).then(
-        res => {
-          commit('UPDATE_CONTACT', res.data);
-        },
-        err => {
-          console.log('-- ERROR --', err);
-        }
+      return api.updateContact(data).then(res =>
+        commit('UPDATE_CONTACT', res.data)
       )
     },
 

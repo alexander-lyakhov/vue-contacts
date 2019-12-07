@@ -8,7 +8,7 @@
         <div class="user-info__phone">
           {{user.phone}}
         </div>
-        <div class="user-info__actions" @click="doAction">
+        <div class="user-info__actions">
           <a href="#" @click.stop="editContact(user.id)"><i-edit class="icon"></i-edit></a>
           <a href="#" @click.stop="removeContact(user.id)"><i-remove class="icon"></i-remove></a>
         </div>
@@ -46,10 +46,6 @@ export default {
 
 
   methods: {
-    doAction(e) {
-      console.log(e.target, e.currentTarget);
-    },
-
     editContact(userID) {
       this.$router.push({
         name: 'edit',

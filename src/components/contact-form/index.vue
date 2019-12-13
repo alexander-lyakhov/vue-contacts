@@ -1,27 +1,48 @@
 ﻿<template>
   <form @submit.prevent>
     <label>First name</label>
-    <div class="text-field">
-      <input type="text" placeholder="First name" v-model="contact.firstName" />
+    <div class="text-field" :class="getClassObject('firstName')">
+      <input
+        type="text"
+        placeholder="First name"
+        v-model.trim="contact.firstName"
+        @blur="validate('firstName')"
+      />
     </div>
 
     <label>Second name</label>
-    <div class="text-field">
-      <input type="text" placeholder="Second name" v-model="contact.secondName" />
+    <div class="text-field" :class="getClassObject('secondName')">
+      <input
+        type="text"
+        placeholder="Second name"
+        v-model.trim="contact.secondName"
+        @blur="validate('secondName')"
+      />
     </div>
 
     <label>Last name</label>
-    <div class="text-field">
-      <input type="text" placeholder="Last name" v-model="contact.lastName" />
+    <div class="text-field" :class="getClassObject('lastName')">
+      <input
+        type="text"
+        placeholder="Last name"
+        v-model.trim="contact.lastName"
+        @blur="validate('lastName')"
+      />
     </div>
 
     <label>Phone</label>
-    <div class="text-field">
-      <masked-input type="text" mask="111-11-11" placeholder="Phone" v-model="contact.phone" />
+    <div class="text-field" :class="getClassObject('phone')">
+      <masked-input
+        type="text"
+        mask="111-11-11"
+        placeholder="Phone"
+        v-model="contact.phone"
+        @blur.native="validate('phone')"
+      />
     </div>
 
     <div class="buttons">
-      <button class="btn btn-primary" type="submit" @click.prevent="handleSubmit">Save</button>
+      <button class="btn btn-primary" :class="{disabled: !isFormValid}" type="submit" @click.prevent="handleSubmit" :disabled="!isFormValid">Save</button>
       <button class="btn outlined" @click.prevent="handleReset">Reset</button>
     </div>
 
@@ -38,6 +59,8 @@
 import api from '@/api';
 import maskedInput from 'vue-masked-input'
 
+import { required } from 'vuelidate/lib/validators'
+
 export default {
   name: 'contact-form',
 
@@ -52,6 +75,24 @@ export default {
     }
   },
 
+  validations: {
+    contact: {
+      firstName: {
+        required,
+      },
+      secondName: {
+        required,
+      },
+      lastName: {
+        required,
+      },
+      phone: {
+        required,
+        matchPhone: (value) => /^\d{3}-\d{2}-\d{2}$/.test(value)
+      },
+    }
+  },
+
   data() {
     return {
       contact: {},
@@ -60,6 +101,12 @@ export default {
 
   created() {
     this.$watch('params', val => this.setContact(val), {immediate: true});
+  },
+
+  computed: {
+    isFormValid() {
+      return this.$v.$dirty && !this.$v.$error;
+    }
   },
 
   methods: {
@@ -81,6 +128,17 @@ export default {
 
     handleReset() {
       this.setContact(this.params);
+    },
+
+    validate(fieldName) {
+      this.$v.contact[fieldName].$touch();
+      return !this.$v.contact[fieldName].$error;
+    },
+
+    getClassObject(fieldName) {
+      return {
+        'has-error': this.$v.contact[fieldName].$error
+      }
     }
   }
 }
@@ -106,10 +164,18 @@ form {
     margin: 0 0 0.875rem 0;
     padding: .5rem 0.5rem;
 
+    &.is-valid {
+      //border: 1px solid $color-accent;
+    }
+
+    &.has-error {
+      border: 1px solid #f00;
+    }
+
     input[type="text"] {
       font: 1.25rem $font-primary, verdana;
       color: $color-secondary;
-      background: #000;
+      background: transparent;
       border: none;
       outline: none;
       width: 100%;

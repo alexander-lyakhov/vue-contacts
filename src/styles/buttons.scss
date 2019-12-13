@@ -45,11 +45,11 @@ $btn-secondary-color: #a0c0e0;
     border: none;
   }
 
-  &:active {
+  &:active:not(.disabled) {
     top: 1px;
   }
 
-  &:active:not(.outlined):not(.text) {
+  &:active:not(.outlined):not(.text):not(.disabled) {
     background: lighten($btn-default-color, 5);
   }
 
@@ -67,7 +67,7 @@ $btn-secondary-color: #a0c0e0;
       color: $btn-primary-color;
     }
 
-    &:active:not(.outlined):not(.text) {
+    &:active:not(.outlined):not(.text):not(.disabled) {
       background: lighten($btn-primary-color, 5);
     }
   }
@@ -85,8 +85,12 @@ $btn-secondary-color: #a0c0e0;
       color: $btn-secondary-color;
     }
 
-    &:active:not(.outlined):not(.text) {
+    &:active:not(.outlined):not(.text):not(.disabled) {
       background: lighten($btn-secondary-color, 5);
     }
+  }
+  &.disabled {
+    color: #808080;
+    cursor: default;
   }
 }

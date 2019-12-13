@@ -103,6 +103,12 @@ export default {
     this.$watch('params', val => this.setContact(val), {immediate: true});
   },
 
+  mounted() {
+    if (Object.keys(this.params).length > 0) {
+      this.$v.$touch()
+    }
+  },
+
   computed: {
     isFormValid() {
       return this.$v.$dirty && !this.$v.$error;

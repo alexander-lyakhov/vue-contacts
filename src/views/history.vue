@@ -21,51 +21,51 @@
 
 <script>
 
+import { mapState, mapGetters } from 'vuex';
 import api from '@/api';
-import {mapState, mapGetters} from 'vuex';
-import {sweetAlert, ERROR_MESSAGE} from '@/defs/swal';
+import { sweetAlert, ERROR_MESSAGE } from '@/defs/swal';
 
 export default {
   name: 'history',
 
   data() {
     return {
-      contactInfo: null
-    }
+      contactInfo: null,
+    };
   },
 
   created() {
     this.contactInfo = this.$store.getters.getContactById(this.$route.params.id);
 
-    !this.contactInfo &&
-      api.getContactById(this.$route.params.id).then(
-        res => {
+    !this.contactInfo
+      && api.getContactById(this.$route.params.id).then(
+        (res) => {
           this.contactInfo = res.data;
         },
-        err => {
-          sweetAlert(ERROR_MESSAGE, err)
-        }
-      )
+        (err) => {
+          sweetAlert(ERROR_MESSAGE, err);
+        },
+      );
   },
 
   mounted() {
-    document.documentElement.scrollTop ?
-      document.documentElement.scrollTop = 0: // Chrome
-      document.body.scrollTop = 0; // Edge
+    document.documentElement.scrollTop
+      ? document.documentElement.scrollTop = 0 // Chrome
+      : document.body.scrollTop = 0; // Edge
   },
 
   computed: {
     contactFullName() {
-      const {firstName, secondName, lastName} = this.contactInfo || {};
+      const { firstName, secondName, lastName } = this.contactInfo || {};
       return [lastName, firstName, secondName].join(' ');
     },
 
     history() {
       return (this.contactInfo || {}).history;
-    }
-  }
+    },
+  },
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

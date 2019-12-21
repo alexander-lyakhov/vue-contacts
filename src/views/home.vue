@@ -19,11 +19,13 @@
 
 <script>
 
+import { mapState, mapGetters } from 'vuex';
 import iEdit from '@/assets/icons/edit.svg';
 import iRemove from '@/assets/icons/remove.svg';
-import {sweetAlert, DELETING_REQUEST, DELETING_COMPLETE, ERROR_MESSAGE} from '@/defs/swal';
+import {
+  sweetAlert, DELETING_REQUEST, DELETING_COMPLETE, ERROR_MESSAGE,
+} from '@/defs/swal';
 
-import {mapState, mapGetters} from 'vuex';
 
 export default {
   name: 'home',
@@ -34,14 +36,12 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('GET_CONTACT_LIST').catch(err =>
-      sweetAlert(ERROR_MESSAGE, err)
-    )
+    this.$store.dispatch('GET_CONTACT_LIST').catch(err => sweetAlert(ERROR_MESSAGE, err));
   },
 
   computed: {
     ...mapState({
-      users: 'contacts'
+      users: 'contacts',
     }),
     ...mapGetters(['getContactFullName']),
   },
@@ -52,35 +52,35 @@ export default {
       this.$router.push({
         name: 'edit',
         params: {
-          id: userID
-        }
-      })
+          id: userID,
+        },
+      });
     },
 
     removeContact(userID) {
       const fullName = this.getContactFullName(userID);
 
-      sweetAlert(DELETING_REQUEST, fullName).then(res => {
-        res.value &&
-          this.$store.dispatch('REMOVE_CONTACT', userID).then(
-            res => {
-              sweetAlert(DELETING_COMPLETE, fullName)
+      sweetAlert(DELETING_REQUEST, fullName).then((res) => {
+        res.value
+          && this.$store.dispatch('REMOVE_CONTACT', userID).then(
+            (res) => {
+              sweetAlert(DELETING_COMPLETE, fullName);
             },
-            err => {
-              sweetAlert(ERROR_MESSAGE, err)
-            }
-          )
-      })
+            (err) => {
+              sweetAlert(ERROR_MESSAGE, err);
+            },
+          );
+      });
     },
 
     openHistory(id) {
       this.$router.push({
         name: 'history',
-        params: {id}
-      })
-    }
-  }
-}
+        params: { id },
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -26,10 +26,10 @@ export default {
 
   computed: {
     isLoading() {
-      return flags.isLoading
-    }
-  }
-}
+      return flags.isLoading;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

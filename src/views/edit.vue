@@ -12,56 +12,56 @@
 
 <script>
 
+import { mapState, mapGetters } from 'vuex';
 import api from '@/api';
 import contactForm from '@/components/contact-form';
-import {mapState, mapGetters} from 'vuex';
-import {sweetAlert, ERROR_MESSAGE} from '@/defs/swal';
+import { sweetAlert, ERROR_MESSAGE } from '@/defs/swal';
 
 export default {
   name: 'edit',
 
   components: {
-    contactForm
+    contactForm,
   },
 
   data() {
     return {
-      contactInfo: null
-    }
+      contactInfo: null,
+    };
   },
 
   created() {
     this.contactInfo = this.$store.getters.getContactById(this.$route.params.id);
 
-    !this.contactInfo &&
-      api.getContactById(this.$route.params.id).then(
-        res => {
+    !this.contactInfo
+      && api.getContactById(this.$route.params.id).then(
+        (res) => {
           this.contactInfo = res.data;
         },
-        err => {
-          sweetAlert(ERROR_MESSAGE, err)
-        }
-      )
+        (err) => {
+          sweetAlert(ERROR_MESSAGE, err);
+        },
+      );
   },
 
   computed: {
     ...mapState(['contacts']),
-    ...mapGetters(['getContactById'])
+    ...mapGetters(['getContactById']),
   },
 
   methods: {
     updateContact(data) {
       this.$store.dispatch('UPDATE_CONTACT', data).then(
-        res => {
-          this.$router.push({name: 'home'})
+        (res) => {
+          this.$router.push({ name: 'home' });
         },
-        err => {
-          sweetAlert(ERROR_MESSAGE, err)
-        }
-      )
-    }
-  }
-}
+        (err) => {
+          sweetAlert(ERROR_MESSAGE, err);
+        },
+      );
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

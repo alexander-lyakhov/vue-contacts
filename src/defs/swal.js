@@ -1,4 +1,4 @@
-﻿import swal from 'sweetalert2';
+import swal from 'sweetalert2';
 
 export const DELETING_REQUEST = params => ({
   title: 'Delete this contact?',
@@ -6,7 +6,7 @@ export const DELETING_REQUEST = params => ({
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#d33',
-  confirmButtonText: 'Delete'
+  confirmButtonText: 'Delete',
 });
 
 export const DELETING_COMPLETE = params => ({
@@ -32,5 +32,5 @@ export default {
   show,
   DELETING_REQUEST,
   DELETING_COMPLETE,
-  ERROR_MESSAGE
-}
+  ERROR_MESSAGE,
+};

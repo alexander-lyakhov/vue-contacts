@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <form @submit.prevent>
     <label>First name</label>
     <div class="text-field" :class="getClassObject('firstName')">
@@ -56,23 +56,23 @@
 
 <script>
 
-import api from '@/api';
-import maskedInput from 'vue-masked-input'
+import maskedInput from 'vue-masked-input';
 
-import { required } from 'vuelidate/lib/validators'
+import { required } from 'vuelidate/lib/validators';
+import api from '@/api';
 
 export default {
   name: 'contact-form',
 
   components: {
-    maskedInput
+    maskedInput,
   },
 
   props: {
     params: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
 
   validations: {
@@ -88,43 +88,45 @@ export default {
       },
       phone: {
         required,
-        matchPhone: (value) => /^\d{3}-\d{2}-\d{2}$/.test(value)
+        matchPhone: value => /^\d{3}-\d{2}-\d{2}$/.test(value),
       },
-    }
+    },
   },
 
   data() {
     return {
       contact: {},
-    }
+    };
   },
 
   created() {
-    this.$watch('params', val => this.setContact(val), {immediate: true});
+    this.$watch('params', val => this.setContact(val), { immediate: true });
   },
 
   mounted() {
     if (Object.keys(this.params).length > 0) {
-      this.$v.$touch()
+      this.$v.$touch();
     }
   },
 
   computed: {
     isFormValid() {
       return this.$v.$dirty && !this.$v.$error;
-    }
+    },
   },
 
   methods: {
     setContact(data) {
-      const {id = '', firstName = '', secondName = '', lastName = '', phone = ''} = data;
+      const {
+        id = '', firstName = '', secondName = '', lastName = '', phone = '',
+      } = data;
 
       this.contact = {
         id,
         firstName,
         secondName,
         lastName,
-        phone
+        phone,
       };
     },
 
@@ -143,11 +145,11 @@ export default {
 
     getClassObject(fieldName) {
       return {
-        'has-error': this.$v.contact[fieldName].$error
-      }
-    }
-  }
-}
+        'has-error': this.$v.contact[fieldName].$error,
+      };
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

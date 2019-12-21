@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <header>
     <nav>
       <ul class="menu">
@@ -42,8 +42,8 @@ export default {
     iAbout,
     iEdit,
     iRemove,
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

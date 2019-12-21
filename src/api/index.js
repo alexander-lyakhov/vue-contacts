@@ -1,4 +1,4 @@
-import axios from './config.js'
+import axios from './config.js';
 
 function getContactList() {
   return axios.get('/contacts');
@@ -9,11 +9,11 @@ function getContactById(id) {
 }
 
 function createContact(data) {
-  return axios.post(`/contacts`, data)
+  return axios.post('/contacts', data);
 }
 
 function updateContact(data) {
-  return axios.patch(`/contacts/${data.id}`, data)
+  return axios.patch(`/contacts/${data.id}`, data);
 }
 
 function removeContact(id) {
@@ -25,5 +25,5 @@ export default {
   getContactById,
   createContact,
   updateContact,
-  removeContact
+  removeContact,
 };

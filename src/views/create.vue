@@ -22,10 +22,10 @@ export default {
   methods: {
     createContact(data) {
       this.$store.dispatch('CREATE_CONTACT', data).then(
-        (res) => {
+        res => {
           this.$router.push({ name: 'home' });
         },
-        (err) => {
+        err => {
           sweetAlert(ERROR_MESSAGE, err);
         },
       );

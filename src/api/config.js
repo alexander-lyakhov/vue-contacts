@@ -5,24 +5,24 @@ axios.defaults.baseURL = 'https://my-json-server.typicode.com/alexander-lyakhov/
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 axios.interceptors.request.use(
-  (config) => {
+  config => {
     flags.isLoading = true;
     return config;
   },
 
-  (err) => {
+  err => {
     flags.isLoading = false;
     return Promise.reject(err);
   },
 );
 
 axios.interceptors.response.use(
-  (res) => {
+  res => {
     flags.isLoading = false;
     return res;
   },
 
-  (err) => {
+  err => {
     flags.isLoading = false;
     return Promise.reject(err);
   },

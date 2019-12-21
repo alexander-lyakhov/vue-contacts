@@ -23,7 +23,10 @@ import { mapState, mapGetters } from 'vuex';
 import iEdit from '@/assets/icons/edit.svg';
 import iRemove from '@/assets/icons/remove.svg';
 import {
-  sweetAlert, DELETING_REQUEST, DELETING_COMPLETE, ERROR_MESSAGE,
+  sweetAlert,
+  DELETING_REQUEST,
+  DELETING_COMPLETE,
+  ERROR_MESSAGE,
 } from '@/defs/swal';
 
 
@@ -36,7 +39,9 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('GET_CONTACT_LIST').catch(err => sweetAlert(ERROR_MESSAGE, err));
+    this.$store.dispatch('GET_CONTACT_LIST').catch(err =>
+      sweetAlert(ERROR_MESSAGE, err)
+    );
   },
 
   computed: {
@@ -60,13 +65,13 @@ export default {
     removeContact(userID) {
       const fullName = this.getContactFullName(userID);
 
-      sweetAlert(DELETING_REQUEST, fullName).then((res) => {
+      sweetAlert(DELETING_REQUEST, fullName).then(res => {
         res.value
           && this.$store.dispatch('REMOVE_CONTACT', userID).then(
-            (res) => {
+            res => {
               sweetAlert(DELETING_COMPLETE, fullName);
             },
-            (err) => {
+            err => {
               sweetAlert(ERROR_MESSAGE, err);
             },
           );

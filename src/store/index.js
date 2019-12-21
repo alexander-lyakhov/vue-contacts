@@ -38,7 +38,9 @@ export default new Vuex.Store({
     },
 
     UPDATE_CONTACT(state, data) {
-      state.contacts = state.contacts.map(item => (item.id === data.id ? data : item));
+      state.contacts = state.contacts.map(item =>
+        item.id === data.id ? data : item
+      );
     },
 
     REMOVE_CONTACT(state, id) {
@@ -48,21 +50,29 @@ export default new Vuex.Store({
 
   actions: {
     GET_CONTACT_LIST({ commit }) {
-      return api.getContactList().then(res => commit('POPULATE_CONTACTS', res.data));
+      return api.getContactList().then(res =>
+        commit('POPULATE_CONTACTS', res.data)
+      );
     },
 
     CREATE_CONTACT({ commit }, data) {
       data.history = [];
 
-      return api.createContact(data).then(res => commit('CREATE_CONTACT', res.data));
+      return api.createContact(data).then(res =>
+        commit('CREATE_CONTACT', res.data)
+      );
     },
 
     UPDATE_CONTACT({ commit }, data) {
-      return api.updateContact(data).then(res => commit('UPDATE_CONTACT', res.data));
+      return api.updateContact(data).then(res =>
+        commit('UPDATE_CONTACT', res.data)
+      );
     },
 
     REMOVE_CONTACT({ commit }, id) {
-      return api.removeContact(id).then(res => commit('REMOVE_CONTACT', id));
+      return api.removeContact(id).then(res =>
+        commit('REMOVE_CONTACT', id)
+      );
     },
   },
 });

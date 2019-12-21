@@ -39,10 +39,10 @@ export default {
 
     !this.contactInfo
       && api.getContactById(this.$route.params.id).then(
-        (res) => {
+        res => {
           this.contactInfo = res.data;
         },
-        (err) => {
+        err => {
           sweetAlert(ERROR_MESSAGE, err);
         },
       );

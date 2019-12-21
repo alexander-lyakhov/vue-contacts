@@ -35,10 +35,10 @@ export default {
 
     !this.contactInfo
       && api.getContactById(this.$route.params.id).then(
-        (res) => {
+        res => {
           this.contactInfo = res.data;
         },
-        (err) => {
+        err => {
           sweetAlert(ERROR_MESSAGE, err);
         },
       );
@@ -52,10 +52,10 @@ export default {
   methods: {
     updateContact(data) {
       this.$store.dispatch('UPDATE_CONTACT', data).then(
-        (res) => {
+        res => {
           this.$router.push({ name: 'home' });
         },
-        (err) => {
+        err => {
           sweetAlert(ERROR_MESSAGE, err);
         },
       );

@@ -109,11 +109,9 @@ $list-item-hover: $md-blue-grey-700;
 
   .user-info {
     padding: .5rem 0;
-    //margin-right: 4rem;
     transition: padding .2s;
     position: relative;
     overflow: hidden;
-    //background: #099;
 
     &:hover {
       background: $list-item-hover;

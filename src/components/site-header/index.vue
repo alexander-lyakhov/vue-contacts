@@ -23,6 +23,7 @@
           </router-link>
         </li>
       </ul>
+      <img class="vue-logo" :src="logo" />
     </nav>
   </header>
 </template>
@@ -33,6 +34,7 @@ import iAdd from '@/assets/icons/add.svg';
 import iAbout from '@/assets/icons/about.svg';
 import iEdit from '@/assets/icons/edit.svg';
 import iRemove from '@/assets/icons/remove.svg';
+import logo from '@/assets/Vue.png';
 
 export default {
   name: 'site-header',
@@ -43,6 +45,7 @@ export default {
     iEdit,
     iRemove,
   },
+  data: () =>({logo})
 };
 </script>
 
@@ -67,6 +70,7 @@ nav {
   margin: auto;
   //padding: 0px 16px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   .menu {
@@ -123,6 +127,14 @@ nav {
         }
       }
     }
+  }
+
+  .vue-logo {
+    border: none;
+    outline: none;
+    width: 48px;
+    height: 48px;
+    margin: 0 1rem;
   }
 }
 

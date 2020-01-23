@@ -29,5 +29,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 * contact editing
 * contact removing
 * history of calls for each contact
-
-### Test commit
